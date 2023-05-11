@@ -32,92 +32,96 @@ def inversi_rgb(nilai):              #fungsi untuk melakukan inversi gambar RGB
 
 inversi_grayscale(255)              #melakukan inversi gambar grayscale dengan nilai 255 dan menyimpan hasilnya pada array img_inversi
 plt.imshow(img_inversi)             #menampilkan gambar
-plt.title("Inversi Grayscale")
-plt.show()
+plt.title("Inversi Grayscale")#judul 
 
-inversi_rgb(255)
-plt.imshow(img_inversi)
-plt.title("Inversi RGB")
-plt.show()
+plt.show()#fungsi plot
 
-img_log = np.zeros(img.shape, dtype=np.uint8)
+inversi_rgb(255)#melakukan inversi gambar grayscale dengan nilai 255 dan menyimpan hasilnya pada array img_inversi
+plt.imshow(img_inversi)#menampilkan gambar
+plt.title("Inversi RGB")#judul
+plt.show()#fungsi plot
 
-def log(c):
-    for y in range(0, img_height):
-        for x in range(0, img_width):
-            red = img[y][x][0]
-            green = img[y][x][1]
-            blue = img[y][x][2]
-            gray = (int(red) + int(green) + int(blue)) / 3
-            gray = int(c * np.log(gray + 1))
-            if gray > 255:
+img_log = np.zeros(img.shape, dtype=np.uint8)#array kosong untuk ukuran gambar dan tipe gambar
+
+def log(c):# mendefinisikan sebuah fungsi bernama log dengan satu parameter c.
+    for y in range(0, img_height):#loop tinggi gambar
+        for x in range(0, img_width):#loop lebar gambar
+            red = img[y][x][0]#pixel merah
+            green = img[y][x][1]#pixel hijau
+            blue = img[y][x][2]#pixel biru
+            gray = (int(red) + int(green) + int(blue)) / 3#rata-rata rjb di bagi 3 jadi grey
+            gray = int(c * np.log(gray + 1))#Menghitung logaritma natural dari nilai keabuan + 1, kemudian mengalikan dengan "c" dan mengkonversi hasilnya menjadi bilangan bulat.
+            if gray > 255:#jika grey 255 lebih dari 255 maka 255
                 gray = 255
-            if gray < 0:
+            if gray < 0:#jika grey kurang dari 0 maka 0
                 gray = 0
-            img_log[y][x] = (gray, gray, gray)
+            img_log[y][x] = (gray, gray, gray)#Menetapkan piksel pada koordinat (x,y) pada gambar menjadi nilai keabuan yang baru (gray) untuk masing-masing komponen warna (merah, hijau, dan biru).
 
-log(30)
-plt.imshow(img_log)
-plt.title("Log")
-plt.show()
+log(30)#log diberi nilai 30 
+plt.imshow(img_log)#menampilkan gambar
+plt.title("Log")#judul gambar
+plt.show()#fungsi tampil
 
 
-img_inlog = np.zeros(img.shape, dtype=np.uint8)
+img_inlog = np.zeros(img.shape, dtype=np.uint8)#array kosong untuk ukuran dan tipe
 
-def inlog(c):
-    for y in range(0, img_height):
-        for x in range(0, img_width):
-            red = img[y][x][0]
-            green = img[y][x][1]
-            blue = img[y][x][2]
-            gray = (int(red) + int(green) + int(blue)) / 3
-            gray = int(c * np.log(255 - gray + 1))
-            if gray > 255:
+def inlog(c):#definisi inlog dengan c
+    for y in range(0, img_height):#loop y
+        for x in range(0, img_width):#loop x
+            red = img[y][x][0]#pixel merah
+            green = img[y][x][1]#pixel hijau
+            blue = img[y][x][2]#pixel biru
+            gray = (int(red) + int(green) + int(blue)) / 3#rata-rata rjb di bagi 3 jadi grey
+            gray = int(c * np.log(255 - gray + 1))#Menghitung logaritma natural dari nilai keabuan + 1, kemudian mengalikan dengan "c" dan mengkonversi hasilnya menjadi bilangan bulat.
+            if gray > 255:#jika grey 255 lebih dari 255 maka 255
                 gray = 255
-            if gray < 0:
+            if gray < 0:#jika grey kurang dari 0 maka 0
                 gray = 0
-            img_inlog[y][x] = (gray, gray, gray)
+            img_inlog[y][x] = (gray, gray, gray)#Menetapkan piksel pada koordinat (x,y) pada gambar menjadi nilai keabuan yang baru (gray) untuk masing-masing komponen warna (merah, hijau, dan biru).
 
-inlog(30)
-plt.imshow(img_inlog)
-plt.title("Inversi & Log")
-plt.show()
+inlog(30)#log diberi nilai 30 
+plt.imshow(img_inlog)#menampilkan gambar
+plt.title("Inversi & Log")#judul gambar
+plt.show()#fungsi tampil
 
 
-img_nthpower = np.zeros(img.shape, dtype=np.uint8)
+img_nthpower = np.zeros(img.shape, dtype=np.uint8)#array kosong untuk ukuran dan tipe
 
-def nthpower(c, y):
-    thc = c / 100
-    thy = y / 100
-    for y in range(0, img_height):
-        for x in range(0, img_width):
-            red = img[y][x][0]
-            green = img[y][x][1]
-            blue = img[y][x][2]
-            gray = (int(red) + int(green) + int(blue)) / 3
-            gray = int(thc * pow(gray, thy))
-            if gray > 255:
+
+def nthpower(c, y):#mendefinisikan fungsi dengan nama "nthpower" yang memiliki 2 parameter yaitu "c" dan "y"
+    thc = c / 100# variabel "thc" diinisialisasi dengan nilai "c" dibagi 100
+    thy = y / 100# variabel "thy" diinisialisasi dengan nilai "y" dibagi 100
+    for y in range(0, img_height):#melakukan iterasi pada setiap pixel pada sumbu y (tinggi) dari gambar
+        for x in range(0, img_width):#melakukan iterasi pada setiap pixel pada sumbu x (lebar) dari gambar
+            red = img[y][x][0]#variabel "red" diinisialisasi dengan nilai piksel warna merah pada koordinat (x, y) dari gambar
+            green = img[y][x][1]#variabel "green" diinisialisasi dengan nilai piksel warna hijau pada koordinat (x, y) dari gambar
+            blue = img[y][x][2]#variabel "blue" diinisialisasi dengan nilai piksel warna biru pada koordinat (x, y) dari gambar
+            gray = (int(red) + int(green) + int(blue)) / 3#variabel "gray" diinisialisasi dengan rata-rata dari nilai piksel warna merah, hijau, dan biru pada koordinat (x, y) dari gambar
+            gray = int(thc * pow(gray, thy))#variabel "gray" diubah menjadi nilai dari "thc" dikalikan dengan "gray" pangkat "thy"
+            if gray > 255:#jika grey 255 lebih dari 255 maka 255
                 gray = 255
-            if gray < 0:
+            if gray < 0:#jika grey kurang dari 0 maka 0
                 gray = 0
-            img_nthpower[y][x] = (gray, gray, gray)
-
-nthpower(50, 100)
-plt.imshow(img_nthpower)
-plt.title("Nth Power")
-plt.show()
+            img_nthpower[y][x] = (gray, gray, gray)#Menetapkan piksel pada koordinat (x,y) pada gambar menjadi nilai keabuan yang baru (gray) untuk masing-masing komponen warna (merah, hijau, dan biru).
 
 
-img_nthrootpower = np.zeros(img.shape, dtype=np.uint8)
+nthpower(50, 100)#Memanggil fungsi nthpower dengan parameter c=50 dan y=100.
+plt.imshow(img_nthpower)#tampil gambar
+plt.title("Nth Power")#judul
+plt.show()#fungsi tampil
 
-def nthrootpower(c, y):
-    thc = c / 100
-    thy = y / 100
-    for y in range(0, img_height):
-        for x in range(0, img_width):
-            red = img[y][x][0]
-            green = img[y][x][1]
-            blue = img[y][x][2]
+
+img_nthrootpower = np.zeros(img.shape, dtype=np.uint8)#array kosong untuk ukuran dan tipe
+
+
+def nthrootpower(c, y):#mendefinisikan fungsi dengan nama "nthpower" yang memiliki 2 parameter yaitu "c" dan "y"
+    thc = c / 100# variabel "thc" diinisialisasi dengan nilai "c" dibagi 100
+    thy = y / 100# variabel "thy" diinisialisasi dengan nilai "y" dibagi 100
+    for y in range(0, img_height):##melakukan iterasi pada setiap pixel pada sumbu y (tinggi) dari gambar
+        for x in range(0, img_width):#melakukan iterasi pada setiap pixel pada sumbu x) dari gambar
+            red = img[y][x][0]#pixel merah
+            green = img[y][x][1]#pixel hijau
+            blue = img[y][x][2]#pixel biru
             gray = (int(red) + int(green) + int(blue)) / 3
             gray = int(thc * pow(gray, 1./thy))
             if gray > 255:
@@ -126,7 +130,7 @@ def nthrootpower(c, y):
                 gray = 0
             img_nthpower[y][x] = (gray, gray, gray)
 
-nthrootpower(50, 100)
+nthrootpower(50, 100)#Memanggil fungsi nthpower dengan parameter c=50 dan y=100.
 plt.imshow(img_nthrootpower)
 plt.title("Nth Root Power")
 plt.show()
